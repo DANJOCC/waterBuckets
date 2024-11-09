@@ -5,7 +5,7 @@ namespace ShowElementInList
 {
     internal class Solution
     {
-        public List<Step> generateSolution(int x_capacity, int y_capacity, int z_gallons)
+       static public List<Step> generate(int x_capacity, int y_capacity, int z_gallons)
         {
             List<Step> stepList = new List<Step>();
 
@@ -50,7 +50,24 @@ namespace ShowElementInList
                     {
                         optionA.Add(new Step(++counterA, x_capacity, bucketAY, "Fill bucket X"));
                         optionB.Add(new Step(++counterB, 0, y_capacity, "Fill bucket Y"));
-                   
+
+                        if (optionB.Last().bucketY == z_gallons || optionB.Last().bucketX == z_gallons)
+                        {
+                            optionB.Last().status = true;
+
+                        }
+                        if (optionA.Last().bucketY == z_gallons || optionA.Last().bucketX == z_gallons)
+                        {
+                            optionA.Last().status = true;
+
+                        }
+
+                        if (optionA.Last().status || optionB.Last().status)
+                        {
+                            solutionFound = true;
+                            continue;
+                        }
+
                         continue;
                     }
                     bucketAY += x_capacity;

@@ -2,8 +2,16 @@
 
 
 using ShowElementInList;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
-List<Step> s = new Solution().generateSolution(6, 25, 6);
+List<Step> s = Solution.generate(6, 25, 6);
+
+var options = new JsonSerializerOptions {WriteIndented = true };
+
+String p = JsonSerializer.Serialize(s, options);
+
+Console.WriteLine(p);
 
 
 foreach(Step step in s)
