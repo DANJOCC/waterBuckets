@@ -14,7 +14,7 @@ namespace waterBucketsTests
 
             List<Step> solution = new Solution().generateSolution(x,y,z);
 
-            Assert.AreEqual("No Solution", solution.First().action);
+            Assert.AreEqual(false, solution.Last().status);
         }
 
         [TestMethod]
@@ -28,9 +28,9 @@ namespace waterBucketsTests
 
             List<Step> solution3 = new Solution().generateSolution(x = 2, y = 4, z = 8);
 
-            Assert.AreEqual("No Solution", solution1.First().action);
-            Assert.AreEqual("No Solution", solution2.First().action);
-            Assert.AreEqual("No Solution", solution3.First().action);
+            Assert.AreEqual(false, solution1.Last().status);
+            Assert.AreEqual(false, solution2.Last().status);
+            Assert.AreEqual(false, solution3.Last().status);
         }
 
         [TestMethod]
@@ -40,14 +40,16 @@ namespace waterBucketsTests
 
             List<Step> solution1 = new Solution().generateSolution(x, y, z);
 
+            Assert.AreEqual(true, solution1.Last().status, $"values : x = {x} y = {y} z = {z}");
 
-            List<Step> solution2 = new Solution().generateSolution(x = 24, y = 10, z = 7);
+            List<Step> solution2 = new Solution().generateSolution(x = 10, y = 24, z = 7);
 
-            List<Step> solution3 = new Solution().generateSolution(x = 100, y = 24, z = 2);
+            Assert.AreEqual(false, solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
 
-            Assert.AreEqual("Solution", solution1.First().action);
-            Assert.AreEqual("No Solution", solution2.First().action);
-            Assert.AreEqual("No Solution", solution3.First().action);
+            List<Step> solution3 = new Solution().generateSolution(x = 24, y = 100, z = 2);
+
+            
+            Assert.AreEqual(false, solution3.Last().status, $"values : x = {x} y = {y} z = {z}");
         }
 
         [TestMethod]
@@ -57,30 +59,58 @@ namespace waterBucketsTests
 
             List<Step> solution1 = new Solution().generateSolution(x, y, z);
 
-            Assert.AreEqual("Solution", solution1.First().action, true,
+            Assert.AreEqual(true, solution1.Last().status,
                $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution2 = new Solution().generateSolution(x = 2, y = 5, z = 3);
 
-            Assert.AreEqual("Solution", solution2.First().action, true,
+            Assert.AreEqual(true, solution2.Last().status,
               $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution3 = new Solution().generateSolution(x = 6, y = 25, z = 12);
 
-            Assert.AreEqual("Solution", solution3.First().action, true,
+            Assert.AreEqual(true, solution3.Last().status,
               $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution4 = new Solution().generateSolution(x = 6, y = 25, z = 13);
 
-            Assert.AreEqual("Solution", solution4.First().action, true,
+            Assert.AreEqual(true, solution4.Last().status,
               $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution5 = new Solution().generateSolution(x = 6, y = 25, z = 15);
 
-            Assert.AreEqual("No Solution", solution5.First().action, true,
+            Assert.AreEqual(false, solution5.Last().status,
               $"values : x = {x} y = {y} z = {z}");
         }
+        [TestMethod]
+        public void found_best_solution()
+        {
+            int x = 2; int y = 10; int z = 4;
 
+            List<Step> solution1 = new Solution().generateSolution(x, y, z);
 
+            Assert.AreEqual(4, solution1.Count,
+               $"values : x = {x} y = {y} z = {z}");
+
+            List<Step> solution2 = new Solution().generateSolution(x = 2, y = 100, z = 96);
+
+            Assert.AreEqual(4, solution2.Count,
+               $"values : x = {x} y = {y} z = {z}");
+
+            List<Step> solution3 = new Solution().generateSolution(x = 4, y = 25, z = 12);
+
+            Assert.AreEqual(6, solution3.Count,
+               $"values : x = {x} y = {y} z = {z}");
+
+            List<Step> solution4 = new Solution().generateSolution(x = 6, y = 25, z = 7);
+
+            Assert.AreEqual(6, solution4.Count,
+              $"values : x = {x} y = {y} z = {z}");
+
+            List<Step> solution5 = new Solution().generateSolution(x = 5, y = 7, z = 2);
+
+            Assert.AreEqual(2, solution5.Count,
+              $"values : x = {x} y = {y} z = {z}");
+        }
     }
 }

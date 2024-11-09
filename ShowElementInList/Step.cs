@@ -1,9 +1,16 @@
-﻿namespace waterBuckets.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ShowElementInList
 {
-    public class Step
+    internal class Step
     {
+
         public int id { get; set; }
-        public int bucketX {  get; set; }
+        public int bucketX { get; set; }
 
         public int bucketY { get; set; }
 
@@ -16,6 +23,11 @@
             this.bucketX = bucketX;
             this.bucketY = bucketY;
             this.action = action;
+        }
+
+        public override string ToString()
+        {
+            return $"id:{id},bucketX:{bucketX},bucketY:{bucketY},action:{action},status:{status}";
         }
     }
 }

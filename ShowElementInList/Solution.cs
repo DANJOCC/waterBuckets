@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.Options;
-using System.Collections;
-using System.Numerics;
-
-namespace waterBuckets.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+namespace ShowElementInList
 {
-    public class Solution
+    internal class Solution
     {
-        public List<Step> generateSolution(int x_capacity, int y_capacity, int z_gallons) {
+        public List<Step> generateSolution(int x_capacity, int y_capacity, int z_gallons)
+        {
             List<Step> stepList = new List<Step>();
 
             if (x_capacity % 2 == 0 && y_capacity % 2 == 0 && z_gallons % 2 != 0)
@@ -32,7 +32,7 @@ namespace waterBuckets.Models
                 t.status = true;
                 stepList.Add(t);*/
 
-               
+
                 List<Step> optionA = new List<Step>();
                 List<Step> optionB = new List<Step>();
 
@@ -46,7 +46,7 @@ namespace waterBuckets.Models
                 while (!solutionFound)
                 {
 
-                    if(counterB == 0)
+                    if (counterB == 0)
                     {
                         optionA.Add(new Step(++counterA, x_capacity, bucketAY, "Fill bucket X"));
                         optionB.Add(new Step(++counterB, 0, y_capacity, "Fill bucket Y"));
@@ -55,7 +55,7 @@ namespace waterBuckets.Models
                     }
                     bucketAY += x_capacity;
 
-                    optionA.Add(new Step(++counterA, 0,bucketAY, "Transfer from bucket X to bucket Y "));
+                    optionA.Add(new Step(++counterA, 0, bucketAY, "Transfer from bucket X to bucket Y "));
 
                     bucketBY -= x_capacity;
 
@@ -79,18 +79,18 @@ namespace waterBuckets.Models
                     }
 
                     optionA.Add(new Step(++counterA, x_capacity, bucketAY, "Fill bucket X"));
-                   
-                    optionB.Add((new Step(++counterB,0, bucketBY, "Empty bucket X")));
 
-                  
-                   
+                    optionB.Add((new Step(++counterB, 0, bucketBY, "Empty bucket X")));
+
+
+
                 }
 
 
                 bool statusA = optionA.Last().status;
                 bool statusB = optionB.Last().status;
 
-                if(statusA && statusB)
+                if (statusA && statusB)
                 {
                     if (optionA.Count >= optionB.Count)
                     {
@@ -109,7 +109,7 @@ namespace waterBuckets.Models
                 {
                     stepList = optionB;
                 }
-                 
+
             }
             return stepList;
         }
