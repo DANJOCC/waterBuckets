@@ -1,5 +1,6 @@
 ﻿namespace waterBuckets.Models
 {
+#pragma warning disable CS1591
     public class Step
     {
        
@@ -10,7 +11,7 @@
 
         public string action { get; set; } = string.Empty;
 
-        public bool status { get; set; } = false;
+        public String status { get; set; } = "Unsolved";
         public Step(int step, int bucketX, int bucketY, string action)
         {
             this.step = step;

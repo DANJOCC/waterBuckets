@@ -13,15 +13,15 @@ namespace waterBucketsTests
 
             List<Step> solution = Solution.generate(x, y, z);
 
-            Assert.AreEqual(false, solution.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Unsolved", solution.Last().status, $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution2 = Solution.generate(x = 0, y = 10, z = 7);
 
-            Assert.AreEqual(false, solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Unsolved", solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution3 = Solution.generate(x= 0, y = 10, z = 10);
 
-            Assert.AreEqual(true, solution3.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Solved", solution3.Last().status, $"values : x = {x} y = {y} z = {z}");
 
 
 
@@ -33,12 +33,12 @@ namespace waterBucketsTests
 
             List<Step> solution = Solution.generate(x, y, z);
 
-            Assert.AreEqual(false, solution.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Unsolved", solution.Last().status, $"values : x = {x} y = {y} z = {z}");
 
 
             List<Step> solution2 = Solution.generate(x = 0, y = 0, z = 0);
 
-            Assert.AreEqual(false, solution.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Unsolved", solution.Last().status, $"values : x = {x} y = {y} z = {z}");
 
 
         }
@@ -50,11 +50,11 @@ namespace waterBucketsTests
 
             List<Step> solution = Solution.generate(x, y, z);
 
-            Assert.AreEqual(false, solution.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Unsolved", solution.Last().status, $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution2 = Solution.generate(x = 10, y = 10, z = 10);
 
-            Assert.AreEqual(true, solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Solved" ,solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
 
 
         }
@@ -66,7 +66,7 @@ namespace waterBucketsTests
 
             List<Step> solution = Solution.generate(x,y,z);
 
-            Assert.AreEqual(false, solution.Last().status);
+            Assert.AreEqual("Unsolved", solution.Last().status);
         }
 
         [TestMethod]
@@ -80,9 +80,9 @@ namespace waterBucketsTests
 
             List<Step> solution3 = Solution.generate(x = 2, y = 4, z = 8);
 
-            Assert.AreEqual(false, solution1.Last().status);
-            Assert.AreEqual(false, solution2.Last().status);
-            Assert.AreEqual(false, solution3.Last().status);
+            Assert.AreEqual("Unsolved", solution1.Last().status);
+            Assert.AreEqual("Unsolved", solution2.Last().status);
+            Assert.AreEqual("Unsolved", solution3.Last().status);
         }
 
         [TestMethod]
@@ -92,16 +92,16 @@ namespace waterBucketsTests
 
             List<Step> solution1 = Solution.generate(x, y, z);
 
-            Assert.AreEqual(true, solution1.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Solved" ,solution1.Last().status, $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution2 = Solution.generate(x = 10, y = 24, z = 7);
 
-            Assert.AreEqual(false, solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Unsolved", solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution3 = Solution.generate(x = 24, y = 100, z = 2);
 
             
-            Assert.AreEqual(false, solution3.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Unsolved", solution3.Last().status, $"values : x = {x} y = {y} z = {z}");
         }
 
         [TestMethod]
@@ -111,27 +111,27 @@ namespace waterBucketsTests
 
             List<Step> solution1 = Solution.generate(x, y, z);
 
-            Assert.AreEqual(true, solution1.Last().status,
+            Assert.AreEqual("Solved" ,solution1.Last().status,
                $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution2 = Solution.generate(x = 2, y = 5, z = 3);
 
-            Assert.AreEqual(true, solution2.Last().status,
+            Assert.AreEqual("Solved" ,solution2.Last().status,
               $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution3 = Solution.generate(x = 6, y = 25, z = 12);
 
-            Assert.AreEqual(true, solution3.Last().status,
+            Assert.AreEqual("Solved" ,solution3.Last().status,
               $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution4 = Solution.generate(x = 6, y = 25, z = 13);
 
-            Assert.AreEqual(true, solution4.Last().status,
+            Assert.AreEqual("Solved" ,solution4.Last().status,
               $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution5 = Solution.generate(x = 6, y = 25, z = 15);
 
-            Assert.AreEqual(false, solution5.Last().status,
+            Assert.AreEqual("Unsolved", solution5.Last().status,
               $"values : x = {x} y = {y} z = {z}");
         }
         [TestMethod]
