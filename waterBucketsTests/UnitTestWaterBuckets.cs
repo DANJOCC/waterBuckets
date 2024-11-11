@@ -13,11 +13,11 @@ namespace waterBucketsTests
 
             List<Step> solution = Solution.generate(x, y, z);
 
-            Assert.AreEqual("Unsolved", solution.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual(0,solution.Count, $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution2 = Solution.generate(x = 0, y = 10, z = 7);
 
-            Assert.AreEqual("Unsolved", solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual(0, solution2.Count, $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution3 = Solution.generate(x= 0, y = 10, z = 10);
 
@@ -33,12 +33,12 @@ namespace waterBucketsTests
 
             List<Step> solution = Solution.generate(x, y, z);
 
-            Assert.AreEqual("Unsolved", solution.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual(0, solution.Count, $"values : x = {x} y = {y} z = {z}");
 
 
             List<Step> solution2 = Solution.generate(x = 0, y = 0, z = 0);
 
-            Assert.AreEqual("Unsolved", solution.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual("Solved", solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
 
 
         }
@@ -50,7 +50,7 @@ namespace waterBucketsTests
 
             List<Step> solution = Solution.generate(x, y, z);
 
-            Assert.AreEqual("Unsolved", solution.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual(0, solution.Count, $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution2 = Solution.generate(x = 10, y = 10, z = 10);
 
@@ -66,7 +66,7 @@ namespace waterBucketsTests
 
             List<Step> solution = Solution.generate(x,y,z);
 
-            Assert.AreEqual("Unsolved", solution.Last().status);
+            Assert.AreEqual(0, solution.Count);
         }
 
         [TestMethod]
@@ -80,9 +80,9 @@ namespace waterBucketsTests
 
             List<Step> solution3 = Solution.generate(x = 2, y = 4, z = 8);
 
-            Assert.AreEqual("Unsolved", solution1.Last().status);
-            Assert.AreEqual("Unsolved", solution2.Last().status);
-            Assert.AreEqual("Unsolved", solution3.Last().status);
+            Assert.AreEqual(0, solution1.Count);
+            Assert.AreEqual(0, solution2.Count);
+            Assert.AreEqual(0, solution3.Count);
         }
 
         [TestMethod]
@@ -96,12 +96,12 @@ namespace waterBucketsTests
 
             List<Step> solution2 = Solution.generate(x = 10, y = 24, z = 7);
 
-            Assert.AreEqual("Unsolved", solution2.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual(0, solution2.Count, $"values : x = {x} y = {y} z = {z}");
 
             List<Step> solution3 = Solution.generate(x = 24, y = 100, z = 2);
 
             
-            Assert.AreEqual("Unsolved", solution3.Last().status, $"values : x = {x} y = {y} z = {z}");
+            Assert.AreEqual(0, solution3.Count, $"values : x = {x} y = {y} z = {z}");
         }
 
         [TestMethod]
@@ -131,7 +131,7 @@ namespace waterBucketsTests
 
             List<Step> solution5 = Solution.generate(x = 6, y = 25, z = 15);
 
-            Assert.AreEqual("Unsolved", solution5.Last().status,
+            Assert.AreEqual(0, solution5.Count,
               $"values : x = {x} y = {y} z = {z}");
         }
         [TestMethod]

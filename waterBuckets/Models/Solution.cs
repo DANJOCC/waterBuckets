@@ -85,7 +85,7 @@ namespace waterBuckets.Models
             }
 
 
-            String statusA = optionA.Last().status;
+            String statusA = optionA.Last().status != null ? optionA.Last().status : "UnSolved";
             String statusB = optionB.Last().status;
 
             if (statusA == "Solved" && statusB == "Solved")
@@ -114,30 +114,34 @@ namespace waterBuckets.Models
 
             if (x_capacity % 2 == 0 && y_capacity % 2 == 0 && z_gallons % 2 != 0)
             {
-                stepList.Add(new Step(0, 0, 0, ""));
+                return stepList;
             }
-            else if(x_capacity == 0 || y_capacity == 0)
+
+            if(x_capacity == 0 || y_capacity == 0)
             {
                 getSolution(ref stepList,x_capacity,y_capacity,z_gallons);
+                return stepList;
             }
-            else if (y_capacity < z_gallons)
+
+            if (y_capacity < z_gallons)
             {
-                stepList.Add(new Step(0, 0, 0, ""));
+                return stepList;
             }
-            else if (z_gallons < x_capacity && z_gallons < y_capacity && y_capacity % x_capacity != z_gallons)
+
+            if (z_gallons < x_capacity && z_gallons < y_capacity && y_capacity % x_capacity != z_gallons)
             {
-                stepList.Add(new Step(0, 0, 0, ""));
+                return stepList;
             }
-            else if (z_gallons > x_capacity && z_gallons < y_capacity &&
+
+            if (z_gallons > x_capacity && z_gallons < y_capacity &&
                 (z_gallons % x_capacity != 0 && (y_capacity - z_gallons) % x_capacity != 0))
             {
-                stepList.Add(new Step(0, 0, 0, ""));
+                return stepList;
             }
-            else
-            {
-                getSolution(ref stepList, x_capacity, y_capacity, z_gallons);
+            
+            getSolution(ref stepList, x_capacity, y_capacity, z_gallons);
                  
-            }
+            
             return stepList;
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace waterBuckets.Models
+﻿using System.Runtime.InteropServices;
+
+namespace waterBuckets.Models
 {
 #pragma warning disable CS1591
     public class Step
@@ -11,6 +13,7 @@
 
         public string action { get; set; } = string.Empty;
 
+        
         public String status { get; set; } = "Unsolved";
         public Step(int step, int bucketX, int bucketY, string action)
         {

@@ -33,33 +33,21 @@ namespace waterBuckets.Controllers
         /// <response code="400">Json Response with key "solution" an value equal to empty List of step</response>
         // POST api/<SolutionController>
         [HttpPost]
-        
-        public IActionResult Post([FromBody] Buckets buckets)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ResponseSolution))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequest))]
+        public JsonResult Post([FromBody] Buckets buckets)
         {
-            
-            var result = new ResponseSolution();
 
-            if (buckets == null)
-            {
-                Response.StatusCode = StatusCodes.Status400BadRequest;
-                
+            ResponseSolution result = new ResponseSolution();
 
-                return new JsonResult(result);
-            }
-
-            if (!ModelState.IsValid)
+            if (buckets.x_capacity < 0 || buckets.y_capacity < 0 || buckets.z_amount_wanted < 0)
             {
                 Response.StatusCode = StatusCodes.Status400BadRequest;
 
 
-                return new JsonResult(result);
-            }
+                BadRequest bad = new BadRequest("negative value in one of body values", []);
 
-            if (buckets.x_capacity <= 0 || buckets.y_capacity < 0 || buckets.z_amount_wanted < 0)
-            {
-                Response.StatusCode = StatusCodes.Status400BadRequest;
-
-                return new JsonResult(result);
+                return new JsonResult(bad);
             }
 
             Response.StatusCode = StatusCodes.Status201Created;
@@ -68,7 +56,13 @@ namespace waterBuckets.Controllers
             int y = Math.Max(buckets.x_capacity, buckets.y_capacity);
 
             result.solution = Solution.generate(x, y, buckets.z_amount_wanted);
+            if (result.solution.Count == 0)
+            {
 
+                BadRequest bad = new BadRequest("No solution", []);
+
+                return new JsonResult(bad);
+            }
             return new JsonResult(result);
         }
     #pragma warning restore CS1591

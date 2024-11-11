@@ -13,7 +13,6 @@ namespace waterBuckets.Models
         /// Capacity of bucket X
         /// </summary>
         /// <example>6</example>
-        [Range(0,int.MaxValue)]
         
         public int x_capacity { get; set; }
 
@@ -21,7 +20,6 @@ namespace waterBuckets.Models
         /// Capacity of bucket Y
         /// </summary>
         /// <example>25</example>
-        [Range(0, int.MaxValue)]
         
         public int y_capacity { get; set; }
 
@@ -29,8 +27,6 @@ namespace waterBuckets.Models
         /// Amount of water gallons wanted
         /// </summary>
         /// <example>13</example>
-        [Required]
-        [Range(0, int.MaxValue)]
         public int z_amount_wanted { get; set; }
     }
 }

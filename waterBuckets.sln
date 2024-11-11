@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waterBuckets", "waterBucket
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waterBucketsTests", "waterBucketsTests\waterBucketsTests.csproj", "{BFD25D44-EC6E-4F66-8E51-FD446EDA6689}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowElementInList", "ShowElementInList\ShowElementInList.csproj", "{3D317B64-5DD8-430F-AC3C-10FA2F8F9C02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowElementInList", "ShowElementInList\ShowElementInList.csproj", "{3D317B64-5DD8-430F-AC3C-10FA2F8F9C02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
