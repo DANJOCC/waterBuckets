@@ -47,7 +47,7 @@ El backend debe de procesar este problema eficientemente y devolver la solución
 
 5. En caso de no encontrar solucion devolver un mensaje indicando que no existe solucion
 
-### Algoritmo empleado
+### Enfoque del algoritmo
 
 Para hallar la solucion primero se estudian los posibles casos donde no sea posible hallar una, presentadose los siguientes:
 
@@ -63,7 +63,7 @@ Una vez establecidos los casos donde no sea posible hallar una solución, es má
 A. 1. Llenar cubeta pequeña -> 2. Pasar contenido a cubeta grande -> repetir desde 1.
 B. 1. Llenar cubeta grande -> 2. Restar contenido de la cubeta grande igual a la capacidad de pequeña -> vaciar cubeta pequeña -> repetir desde 2.
 
-Siendo lo ultimo elegir la ruta que llego primero a la solucion y la cual tiene la menor cantidad de pasos.
+Entonces siguiendo ambos patrones por separados se crean dos listas y se agregan los pasos en ellas hasta conseguir la ruta que llego primero a la solucion y la cual tiene la menor cantidad de pasos.
 
 ### Descricion de codigo
 
@@ -109,6 +109,110 @@ La lista se genera dentro de una clase Solution en un metodo privado getSolution
 Este projecto solo cuenta con un endpoint, su documentacion se encuentra detallado en la pagina generada por Swagger al momento de ejecutarse el projecto.
 
 
+## Guide - English
 
+ ### Requirements
+1. IDE: Visual Studio 2022
+2. Framework: .NET 8
+### Installation
+1. Open Visual Studio.
+2. Select the option to clone repository.
+3. Configure the paths for the project
+4. Verify that the local repository was created.
+5. Open visual studio 2022 again.
+6. Select open project option.
+7. Select cloned project.
 
- 
+###
+Select the waterBuckets project and run it in https or http mode.
+
+### Description
+The task is to create an API that calculates the necessary steps to obtain an exact measurement of gallons of water, using two buckets of X and Y capacities.
+The backend must process this problem efficiently and return the solution in JSON format via a RESTful API.
+
+#### Conditions
+
+1. Only actions of filling, emptying and transferring the entire water content from one bucket to another can be performed.
+2. The values of the requested bucket capacities and gallons are positive integers.
+3. The body of the POST request to obtain the solution according to the set values has the form of:
+  ```
+   {
+     “x_capacity”:2,
+      “y_capacity":10,
+      “z_amount_wanted”:4,   
+   }
+   ```
+
+4. The solution has to be given as follows:
+```
+{
+“solution": [
+{“step”: 1, “bucketX”: 2, “bucketY”: 0, “action”: “Fill bucket X”},
+{ “step”: 2, “bucketX”: 0, “bucketY”: 2, “action”: “Transfer from bucket X to Y”},
+{“step”: 3, “bucketX”: 2, “bucketY”: 2, “action”: “Fill bucket X”},
+{“step”: 4, “bucketX”: 0, “bucketY”: 4, “action”: “Transfer from bucket X to Y”, “status”: “Solved”}
+]
+}
+```
+
+5. If no solution is found, return a message indicating that there is no solution.
+
+### Algorithm Approach
+
+To find the solution we first study the possible cases where it is not possible to find a solution, presented as follows:
+
+1. The capacities of both buckets are even numbers and an odd number of gallons of water is requested.
+2. The number of gallons ordered is greater than the larger capacity of the buckets.
+3. The number of gallons of water is less than the capacity of either bucket, and dividing the capacity of the larger bucket by the smaller bucket does not result in a residual equal to the number of gallons requested.
+4. The number of gallons requested is between the capacities of the two buckets, and the following cases occur at the same time:
+1. The requested number of gallons is not a multiple of the smaller of the two bucket capacities.
+2. The maximum capacity of the buckets minus the requested number of gallons is not a multiple of the smaller capacity of the buckets.
+
+Once the cases where it is not possible to find a solution have been established, it is easier to show that there are only two patterns of routes to follow:
+
+A. 1. Fill small bucket -> 2. Transfer contents to large bucket -> repeat from 1.
+B. 1. Fill larger bucket -> 2. Subtract contents of the large bucket equal to the capacity of the small bucket -> empty small bucket -> repeat from 2.
+
+Then following both patterns separately, two lists are created and the steps in them are added until the path that reached the solution first and which has the least amount of steps is reached.
+
+### Code description
+
+Note that the code always distinguishes bucket X as the small bucket and bucket Y as the large bucket and so is presented in the solution regardless of the values given to the bucket capacities in the request.
+
+The code to return the solution uses a list object, where each element added to it is an object of the Step class.
+
+```
+ public class Step
+ {
+     //Setter and getters
+
+     public Step(int step, int bucketX, int bucketY, string action)
+     {
+        ... 
+     }
+```
+
+The list is generated inside a Solution class in a private method getSolution with the parameters stepList, x_capacity, y_capacity, and z_gallons, where steplist is a reference to the list to be returned; inside this method the steps will be added following separately both patterns mentioned before and the one that has arrived first to the solution will be chosen. This function is called from the static method generate inside the same Solution class, where the cases where it is not possible to find a solution are filtered, the instance of the list of steps is created, and the solution is returned.
+
+```
+ public class Solution
+ {
+     private static void getSolution(ref List<Step> stepList, int x_capacity, int y_capacity, int z_gallons){
+    
+            //Code to select best solution
+         
+     }
+    static public List<Step> generate(int x_capacity, int y_capacity, int z_gallons) {
+
+         List<Step> stepList = new List<Step>();
+
+         //Code to filter conditions
+
+         return stepList;
+     }
+ }
+```
+
+### Endpoints
+
+This project has only one endpoint, its documentation is detailed in the page generated by Swagger when the project is executed.
